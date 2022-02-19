@@ -1,0 +1,21 @@
+.intj_logo {
+    font-family: 'Merriweather', serif;
+}
+
+.intj_header {
+    text-align:center;
+    margin: 2rem 0;
+}
+
+.intj_footer_logo {
+    font-family: 'Merriweather', serif;
+}
+
+.intj_footer_button {
+     font-size: .6rem;
+}
+
+.intj_footer {
+    text-align:center;
+    margin-top: 2rem;
+}

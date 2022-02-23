@@ -6,6 +6,14 @@
         <span>홈</span>
         <span>소개</span>
         <span>사진</span>
-        <span>기록</span>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+            <span>login</span>
+        </a>
+        {% else %}
+        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
+            <span>logout</span>
+        </a>
+        {% endif %}
     </div>
 </div>

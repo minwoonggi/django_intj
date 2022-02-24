@@ -3,13 +3,17 @@
 {% block content %}
 <div>
     <div style="text-align:center; max-width: 500px; margin: 4rem auto;">
-        <p>
-            {{ target_user.date_joined }}
-        </p>
 
         {% if target_user.profile %}
-        <h2 style="font-family: 'NanumSquareB">
+        <img src="{{ target_user.profile.image.url }}" alt="profile image"
+             style="height: 12rem; width: 12rem; border-radius: 20rem;
+             margin-bottom: 2rem;">
+
+        <h2 style="font-family: 'NanumSquareB'">
             {{ target_user.profile.nickname }}
+            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                edit
+            </a>
         </h2>
         {% else %}
         <a href="{% url 'profileapp:create' %}">
@@ -17,6 +21,9 @@
         </a>
         {% endif %}
 
+        <h5 style="margin-bottom: 3rem;">
+            {{ target_user.profile.message }}
+        </h5>
         {% if target_user == user %}
         <a href="{% url 'accountapp:update' pk=target_user.pk %}">
             <p>

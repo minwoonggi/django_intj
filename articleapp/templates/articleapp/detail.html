@@ -2,24 +2,37 @@
 
 {% block content %}
 <div>
-    <div style="text-align:center; max-width: 500px; margin: 4rem auto;">
+    <div style="text-align:center; max-width: 700px; margin: 4rem auto;">
         <!-- 제목 -->
         <h1>
             {{ target_article.title }}
         </h1>
+        <h3>
+            {{ target_article.writer.profile.nickname }}
+        </h3>
+        <hr>
         <!-- 이미지 -->
-        <img src="{{ target_article.image.url }}" alt="">
+        <img style="width: 100%; border-radius: 1rem;"
+             src="{{ target_article.image.url }}" alt="">
         <!-- 내용 -->
         <p>
             {{ target_article.content }}
         </p>
 
-        <a href="{% url 'articleapp:update' pk=target_article.pk %}">
+        {% if target_article.writer == user %}
+        <hr>
+        <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+            class="btn btn-primary rounded-pill col-3">
             <p>Update Article</p>
         </a>
-        <a href="{% url 'articleapp:delete' pk=target_article.pk %}">
+        <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+            class="btn btn-danger rounded-pill col-3">
             <p>Delete Article</p>
         </a>
+        {% endif %}
+        <hr>
+
+
     </div>
 </div>
 

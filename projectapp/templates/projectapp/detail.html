@@ -3,7 +3,7 @@
 {% block content %}
 <div>
     <div style="text-align:center; max-width: 700px; margin: 4rem auto;">
-        <hr>
+
         <!-- 이미지 -->
         <img style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;"
              src="{{ target_project.image.url }}" alt="">
@@ -16,7 +16,6 @@
             {{ target_project.description }}
         </h5>
 
-
         {% if user == 'wgmin' %}
         <hr>
         <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
@@ -25,6 +24,10 @@
         </a>
         <hr>
         {% endif %}
+    </div>
+
+    <div>
+        {% include 'snippets/list_fragment.html' with article_list=object_list %}
     </div>
 </div>
 

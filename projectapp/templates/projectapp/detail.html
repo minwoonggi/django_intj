@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-    <div style="text-align:center; max-width: 700px; margin: 4rem auto;">
+    <div style="text-align:center; max-width: 700px; margin: 4rem auto 1.5rem auto;">
 
         <!-- 이미지 -->
         <img style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;"
@@ -16,15 +16,33 @@
             {{ target_project.description }}
         </h5>
 
-        {% if user == 'wgmin' %}
-        <hr>
-        <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
-            class="btn btn-danger rounded-pill col-3">
-            <p>Delete Project</p>
-        </a>
-        <hr>
-        {% endif %}
+<!--        {% if user == 'wgmin' %}-->
+<!--        <hr>-->
+<!--        <a href="{% url 'projectapp:delete' pk=target_project.pk %}"-->
+<!--            class="btn btn-danger rounded-pill col-3">-->
+<!--            <p>Delete Project</p>-->
+<!--        </a>-->
+<!--        <hr>-->
+<!--        {% endif %}-->
     </div>
+
+    {% if user.is_authenticated %}
+        {% if not subscription %}
+            <div class="text-center mb-5">
+                <a href="{% url 'subscriptionapp:subscribe' %}?project_pk={{ target_project.pk}}"
+                class="btn btn-primary rounded-pill px-4">
+                    Subscribe
+                </a>
+            </div>
+        {% else %}
+            <div class="text-center mb-5">
+                <a href="{% url 'subscriptionapp:subscribe' %}?project_pk={{ target_project.pk}}"
+                class="btn btn-dark rounded-pill px-4">
+                    Unsubscribe
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
 
     <div>
         {% include 'snippets/list_fragment.html' with article_list=object_list %}

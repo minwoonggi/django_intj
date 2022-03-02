@@ -15,10 +15,9 @@
         <img style="width: 100%; border-radius: 1rem;"
              src="{{ target_article.image.url }}" alt="">
         <!-- 내용 -->
-        <p>
-            {{ target_article.content }}
-        </p>
-
+        <div class="text-left">
+            {{ target_article.content | safe }}
+        </div>
         {% if target_article.writer == user %}
         <hr>
         <a href="{% url 'articleapp:update' pk=target_article.pk %}"

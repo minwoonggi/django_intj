@@ -4,7 +4,7 @@ WORKDIR /home/
 
 RUN git clone https://github.com/minwoonggi/django_intj.git
 
-WORKDIR /home/intj/
+WORKDIR /home/django_intj/intj
 
 RUN pip freeze > requirements.txt
 

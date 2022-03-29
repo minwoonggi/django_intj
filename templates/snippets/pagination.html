@@ -5,14 +5,18 @@
         {{ page_obj.previous_page_number }}
     </a>
     {% endif %}
+    {% if page_obj.start_index > 0 %}
     <a href="?page={{ page_obj.number }}"
        class="btn btn-secondary rounded-pill">
         {{ page_obj.number }}
     </a>
+    {% endif %}
     {% if page_obj.has_next %}
+    {% for number in page_obj.next_page_number %}
     <a href="?page={{ page_obj.next_page_number }}"
        class="btn btn-secondary rounded-pill">
         {{ page_obj.next_page_number }}
     </a>
+    {% endfor %}
     {% endif %}
 </div>

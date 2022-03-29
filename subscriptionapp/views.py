@@ -42,8 +42,8 @@ class SubscriptionListView(ListView):
     def get_queryset(self):
         projects = Subscription.objects.filter(user=self.request.user).values_list('project') # user의 모든 구독정보
         # values_list : 구독한 모든 project들 list화
-        article_list = Article.objects.filter(project__in=projects)
-        return article_list
+        subscription_article_list = Article.objects.filter(project__in=projects)
+        return subscription_article_list
 
 
 

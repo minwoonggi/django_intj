@@ -4,55 +4,65 @@
 <div>
     <div style="text-align:center; max-width: 500px; margin: 4rem auto;">
 
+        <!-- target_user의 profile이 있을 때 -->
         {% if target_user.profile %}
-        <!-- profile image -->
-        <img src="{{ target_user.profile.image.url }}" alt="profile image"
-             style="height: 12rem; width: 12rem; border-radius: 20rem;
-             margin-bottom: 2rem; object-fit: cover;">
-        <!-- nickname -->
-        <h2 style="font-family: 'NanumSquareB'">
-            {{ target_user.profile.nickname }}
+            <!-- profile image -->
+            <img src="{{ target_user.profile.image.url }}" alt="profile image"
+                 style="height: 12rem; width: 12rem; border-radius: 20rem;
+                 margin-bottom: 2rem; object-fit: cover;">
+            <!-- nickname -->
+            <h2 style="font-family: 'NanumSquare';">
+                {{ target_user.profile.nickname }}
             {% if target_user == user %}
-            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                <span style="font-size: 0.9rem">edit</span>
-            </a>
+                <a class="material-icons"
+                   style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+                   href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                    edit
+                </a>
+            </h2>
             {% endif %}
-        </h2>
-        <!-- message -->
-        <h5 style="margin-bottom: 3rem;">
-            {{ target_user.profile.message }}
-        </h5>
+            <!-- message -->
+            <h5 style="margin: 3rem 0;">
+                {{ target_user.profile.message }}
+            </h5>
+        <!-- target_user의 profile이 없을 때 -->
         {% else %}
-        {% if target_user == user %}
-            <a href="{% url 'profileapp:create' %}">
-                <h2 style="font-family: 'NanumSquareB'">
+            <!-- target_user와 현재 로그인 user가 같을 때 -->
+            {% if target_user == user %}
+                <div class="text-center">
+                    <h5>프로필 정보가 없습니다.</h5>
+                </div>
+                <a href="{% url 'profileapp:create' %}"
+                    class="btn btn-dark rounded-pill"
+                    style="margin: 1rem 1rem;">
                     Create Profile
-                </h2>
-            </a>
-        {% else %}
-            <h4>
-                프로필 정보가 없습니다.
-            </h4>
+                </a>
+            <!-- target_user와 현재 로그인 user가 같지 않을 때 -->
+            {% else %}
+                <div class="text-center">
+                    <h5>프로필 정보가 없습니다.</h5>
+                </div>
+            {% endif %}
         {% endif %}
-        {% endif %}
-
 
         {% if target_user == user %}
-        <a href="{% url 'accountapp:update' pk=target_user.pk %}">
-            <p>
-                Change Info
-            </p>
-        </a>
-        <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
-            <p>
-                Quit
-            </p>
-        </a>
+        <div class="text-center mt-3">
+            <a class="material-icons"
+               style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+               href="{% url 'accountapp:update' pk=target_user.pk %}">
+                password
+            </a>
+            <a class="material-icons"
+               style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
+               href="{% url 'accountapp:delete' pk=target_user.pk %}">
+                exit_to_app
+            </a>
+        </div>
         {% endif %}
     </div>
-
+    <hr>
     <div>
-        {% include 'snippets/list_fragment.html' with article_list=object_list %}
+        {% include 'snippets/article_list_fragment.html' with article_list=object_list %}
     </div>
 </div>
 

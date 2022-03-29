@@ -38,15 +38,15 @@
   </div>
   <script src="{% static 'js/magicgrid.js' %}"></script>
   {% else %}
-  <div class="text-center">
-    <h1>No Articles YET!</h1>
+  <div class="text-center mt-5 mb-3">
+    <h5>등록 된 게시글이 없습니다.</h5>
   </div>
   {% endif %}
 
   {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
   <div style="text-align: center">
-    <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+    <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-4 px-3">
         <span>Create Article</span>
     </a>
   </div>

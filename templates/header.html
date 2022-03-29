@@ -11,10 +11,6 @@
             <span>Articles</span>
         </a>
 
-        <a href="{% url 'subscriptionapp:list' %}" class="intj_header_nav">
-            <span>Subscription</span>
-        </a>
-
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="intj_header_nav">
             <span>Login</span>
@@ -24,6 +20,10 @@
             <span>SignUp</span>
         </a>
         {% else %}
+        <a href="{% url 'subscriptionapp:list' %}" class="intj_header_nav">
+            <span>Subscription</span>
+        </a>
+
         <a href="{% url 'accountapp:detail' pk=user.pk %}" class="intj_header_nav">
             <span>MyPage</span>
         </a>

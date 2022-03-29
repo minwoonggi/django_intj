@@ -6,7 +6,7 @@ RUN git clone https://github.com/minwoonggi/django_intj.git
 
 WORKDIR /home/intj/
 
-COPY requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 
 RUN pip install -r requirements.txt
 
